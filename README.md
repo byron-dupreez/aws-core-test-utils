@@ -1,4 +1,4 @@
-# aws-core-test-utils v2.0.1
+# aws-core-test-utils v2.0.2
 Utilities to assist with the unit testing of code using AWS
 
 Modules:
@@ -15,6 +15,9 @@ $ npm i aws-core-test-utils --save-dev
 ```
 
 ## Changes
+
+### 2.0.2
+- Added logic to avoid TypeErrors caused by attempts to access properties of undefined mock responses
 
 ### 2.0.1
 - Fixed node version in `package.json`

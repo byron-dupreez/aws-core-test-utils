@@ -28,9 +28,9 @@ function mockDynamoDBDocClient(t, prefix, delayMs, mockResponsesByMethodName) {
           return Promises.delay(ms).then(() => {
             t.pass(`${prefix} simulated put to DynamoDB.DocumentClient with request (${JSON.stringify(request)})`);
 
-            if (r.validateParams) r.validateParams(t, request);
+            if (r && r.validateParams) r.validateParams(t, request);
 
-            if (r.error) throw r.error;
+            if (r && r.error) throw r.error;
 
             return r ? r.result : undefined;
           });
@@ -46,7 +46,7 @@ function mockDynamoDBDocClient(t, prefix, delayMs, mockResponsesByMethodName) {
 
             if (r && r.validateParams) r.validateParams(t, params);
 
-            if (r.error) throw r.error;
+            if (r && r.error) throw r.error;
 
             const result = r ? r.result : undefined;
             return result && result.hasOwnProperty('Item') ? result : {Item: result};
@@ -61,11 +61,11 @@ function mockDynamoDBDocClient(t, prefix, delayMs, mockResponsesByMethodName) {
           return Promises.delay(ms).then(() => {
             t.pass(`${prefix} simulated query on DynamoDB.DocumentClient with params (${JSON.stringify(params)})`);
 
-            if (r.validateParams) {
+            if (r && r.validateParams) {
               r.validateParams(t, params);
             }
 
-            if (r.error) throw r.error;
+            if (r && r.error) throw r.error;
 
             const result = r ? r.result : undefined;
             const hasItems = result && (result.Items || result.hasOwnProperty('Items'));
