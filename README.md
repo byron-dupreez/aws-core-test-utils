@@ -1,4 +1,4 @@
-# aws-core-test-utils v1.0.1
+# aws-core-test-utils v1.0.2
 Utilities to assist with the unit testing of code using AWS
 
 Modules:
@@ -15,6 +15,9 @@ $ npm i aws-core-test-utils --save-dev
 ```
 
 ## Changes
+
+### 1.0.2
+- Added simulation of DynamoDB.DocumentClient `update` method
 
 ### 1.0.1
 - Backport: Added logic to avoid TypeErrors caused by attempts to access properties of undefined mock responses

@@ -37,6 +37,22 @@ function mockDynamoDBDocClient(t, prefix, delayMs, mockResponsesByMethodName) {
         }
       };
     },
+    update(request) {
+      return {
+        promise() {
+          const r = mockResponsesByMethodName['update'];
+          return Promises.delay(ms).then(() => {
+            t.pass(`${prefix} simulated update to DynamoDB.DocumentClient with request (${JSON.stringify(request)})`);
+
+            if (r && r.validateParams) r.validateParams(t, request);
+
+            if (r && r.error) throw r.error;
+
+            return r ? r.result : undefined;
+          });
+        }
+      };
+    },
     get(params) {
       return {
         promise() {
