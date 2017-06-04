@@ -23,8 +23,13 @@
  */
 
 /**
+ * @typedef {function(params: Object.<string, *>): MockResponse} GenerateMockResponse
+ */
+
+/**
  * @typedef {Object} DynamoDBDocClientMock - a simplified mock of a DynamoDB.DocumentClient for testing purposes
  * @property {Function} put
+ * @property {Function} update
  * @property {Function} get
  * @property {Function} query
  */
