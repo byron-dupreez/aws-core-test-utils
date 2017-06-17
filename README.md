@@ -1,4 +1,4 @@
-# aws-core-test-utils v2.0.6
+# aws-core-test-utils v2.0.7
 Utilities to assist with the unit testing of code using AWS
 
 Modules:
@@ -15,6 +15,9 @@ $ npm i aws-core-test-utils --save-dev
 ```
 
 ## Changes
+
+### 2.0.7
+- Upgraded `uuid` test dependency to version 3.1.0
 
 ### 2.0.6
 - Updated `core-functions` dependency to version 3.0.6
