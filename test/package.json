@@ -1,7 +1,7 @@
 {
   "name": "aws-core-test-utils-tests",
   "description": "Unit tests for utilities to assist with the unit testing of code using AWS",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Byron du Preez",
   "license": "Apache-2.0",
   "private": true,
@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "tape": "^4.6.3",
-    "uuid": "^3.0.1"
+    "uuid": "3.1.0"
   },
   "repository": "https://github.com/byron-dupreez/aws-core-test-utils"
 }
