@@ -1,4 +1,4 @@
-# aws-core-test-utils v2.0.5
+# aws-core-test-utils v2.0.6
 Utilities to assist with the unit testing of code using AWS
 
 Modules:
@@ -16,6 +16,24 @@ $ npm i aws-core-test-utils --save-dev
 
 ## Changes
 
+### 2.0.6
+- Updated `core-functions` dependency to version 3.0.6
+- Changes to `type-defs` module:
+  - Added more properties to `TestObject`
+  - Renamed `ValidateParams` type definition to `ValidateArgs` and changed it to accept variadic arguments
+  - Renamed `MockResponse` type definition to `DynamoMockResponse` with new item `I` & key `K` templates
+   - Changed its `result` property's type to `AnyDynamoResult`
+   - Renamed its `validateParams` property to `validateArgs` & changed the property's type to `ValidateArgs`
+  - Renamed `GenerateMockResponse` type definition to `GenerateDynamoMockResponse`
+  - Added new `DynamoMockResponseSource` type definition
+  - Added new `Params` type definition
+  - Added new `AnyDynamoResult` type definition with item `I` & key `K` templates
+  - Added new `AwsRequest` type definition with result `R` template
+  - Renamed `DynamoDBDocClientMock` type definition to `DynamoDBDocClient` with new item `I` & key `K` templates
+  - Improved definitions of `get`, `put`, `query` & `update` properties of `DynamoDBDocClient` type definition
+  - Added new `batchGet`, `batchWrite`, `createSet`, `delete` & `scan` properties to `DynamoDBDocClient` type definition
+  - Replaced all of the type definitions copied from the `module:aws-core-utils#type-defs` with their latest definitions
+  
 ### 2.0.5
 - Updated `core-functions` dependency to version 3.0.5
 

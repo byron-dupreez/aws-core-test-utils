@@ -1,7 +1,7 @@
 {
   "name": "aws-core-test-utils",
   "description": "Utilities to assist with the unit testing of code using AWS",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "author": "Byron du Preez",
   "license": "Apache-2.0",
   "engines": {
@@ -11,7 +11,7 @@
     "test": "tape ./test/*.test.js"
   },
   "devDependencies": {
-    "core-functions": "3.0.5"
+    "core-functions": "3.0.6"
   },
   "repository": "https://github.com/byron-dupreez/aws-core-test-utils"
 }
