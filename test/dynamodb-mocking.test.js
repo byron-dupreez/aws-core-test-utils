@@ -128,6 +128,69 @@ test('mockDynamoDBDocClient with a generate mock response function simulates a s
 });
 
 // =====================================================================================================================
+// Simulate `query` with a generate mock response function that generates simpler items
+// =====================================================================================================================
+
+test('mockDynamoDBDocClient with a generate mock response function that generates simpler items simulates the same sequence of different successful `query` results', t => {
+  const params = [
+    {TableName: 'TestTable1', Key: {id: 123}},
+    {TableName: 'TestTable2', Key: {id: 456}},
+    {TableName: 'TestTable3', Key: {id: 789}},
+    {TableName: 'TestTable4', Key: {id: 999}}
+  ];
+
+  function validateQueryParams(t, queryParams) {
+    t.ok(params.indexOf(queryParams) !== -1, `params must contain queryParams`);
+  }
+
+  function generateDynamoMockResponse(params) {
+    const item1 = {a: params.Key.id, b: params.Key.id + 1};
+    const item2 = {a: params.Key.id * 10, b: params.Key.id * 10 + 1};
+    return {result: [item1, item2], validateArgs: validateQueryParams};
+  }
+
+  const queryResults = [
+    {Items: [{a: 123, b: 124}, {a: 1230, b: 1231}], Count: 2, ScannedCount: 2},
+    {Items: [{a: 456, b: 457}, {a: 4560, b: 4561}], Count: 2, ScannedCount: 2},
+    {Items: [{a: 789, b: 790}, {a: 7890, b: 7891}], Count: 2, ScannedCount: 2},
+    {Items: [{a: 999, b: 1000}, {a: 9990, b: 9991}], Count: 2, ScannedCount: 2}
+  ];
+
+  const dynamoDBDocClient = mockDynamoDBDocClient(t, 'test1', 1, {
+    query: generateDynamoMockResponse
+  });
+
+  // Test 1st `query` gets 1st result
+  dynamoDBDocClient.query(params[0]).promise()
+    .then(res => {
+      t.deepEqual(res, queryResults[0], `query result must be queryResults[0]`);
+
+      // Test 2nd `query` gets 2nd result
+      dynamoDBDocClient.query(params[1]).promise()
+        .then(res => {
+          t.deepEqual(res, queryResults[1], `query result must be queryResults[1]`);
+
+          // Test 3rd `query` gets 3rd result
+          dynamoDBDocClient.query(params[2]).promise()
+            .then(res => {
+              t.deepEqual(res, queryResults[2], `query result must be queryResults[2]`);
+
+              // Test 4th `query` gets an empty items result
+              dynamoDBDocClient.query(params[3]).promise()
+                .then(res => {
+                  t.deepEqual(res, queryResults[3], `query result must be queryResults[3]`);
+
+                  t.end();
+                });
+            });
+        });
+    })
+    .catch(err => {
+      t.end(`query should NOT have failed with error (${err})`);
+    });
+});
+
+// =====================================================================================================================
 // Simulate `get` with an array of mock responses
 // =====================================================================================================================
 
