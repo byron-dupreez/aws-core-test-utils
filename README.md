@@ -1,4 +1,4 @@
-# aws-core-test-utils v1.0.6
+# aws-core-test-utils v1.0.7
 Utilities to assist with the unit testing of code using AWS
 
 Modules:
@@ -15,6 +15,11 @@ $ npm i aws-core-test-utils --save-dev
 ```
 
 ## Changes
+
+### 1.0.7
+- Moved test devDependencies to package.json & removed test/package.json
+- Added `promises-extract` module with copy of `delay` function from `core-functions/promises` as at 2.0.16
+- Removed `core-functions` dependency
 
 ### 1.0.6
 - Upgraded `core-functions` dependency to 2.0.15
