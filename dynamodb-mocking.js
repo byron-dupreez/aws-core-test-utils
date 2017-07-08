@@ -1,6 +1,6 @@
 'use strict';
 
-const Promises = require('core-functions/promises');
+const Promises = require('./promises-extract');
 
 /**
  * Utilities for generating mock DynamoDB.DocumentClient instances for testing.
