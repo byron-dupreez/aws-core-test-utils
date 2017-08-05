@@ -1,5 +1,14 @@
 ## Changes
 
+### 2.0.11
+- Changes to `kms-mocking` module:
+  - Changed mocked AWS.KMS `encrypt` & `decrypt` methods to also simulate the AWS.Request `send(callback)` & `promise()` 
+    styles in addition to the existing immediate callback style
+- Changes to `dynamodb-mocking` module:
+  - Changed mocked DynamoDB.DocumentClient methods to also simulate the AWS.Request `send(callback)` & the immediate 
+    callback styles in addition to the existing AWS.Request `promise()` style
+- Removed `kms-utils` module, which should ONLY be in `aws-core-utils`
+
 ### 2.0.10
 - Added new `kms-mocking` & `kms-utils` modules
 
