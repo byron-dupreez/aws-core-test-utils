@@ -692,10 +692,10 @@ test('mockDynamoDBDocClient simulate failing `scan`', t => {
 });
 
 // =====================================================================================================================
-// Simulate `update`
+// Simulate `update` using AWS.Request.promise() style
 // =====================================================================================================================
 
-test('mockDynamoDBDocClient simulate successful `update` with no validate', t => {
+test('mockDynamoDBDocClient simulate successful `update` with no validate using AWS.Request.promise() style', t => {
   const params = {TableName: 'TestTable', Key: {id: 123}, Item: {a: 1, b: 2}};
 
   const updateResult = {ha: 'Ha'};
@@ -716,7 +716,7 @@ test('mockDynamoDBDocClient simulate successful `update` with no validate', t =>
   );
 });
 
-test('mockDynamoDBDocClient simulate successful `update`', t => {
+test('mockDynamoDBDocClient simulate successful `update` using AWS.Request.promise() style', t => {
   const params = {TableName: 'TestTable', Key: {id: 123}, Item: {a: 1, b: 2}};
 
   function validateUpdateParams(t, updateParams) {
@@ -741,7 +741,7 @@ test('mockDynamoDBDocClient simulate successful `update`', t => {
   );
 });
 
-test('mockDynamoDBDocClient simulate failing `update`', t => {
+test('mockDynamoDBDocClient simulate failing `update` using AWS.Request.promise() style', t => {
   const params = {TableName: 'TestTable', Key: {id: 123}, Item: {a: 1, b: 2}};
 
   function validateUpdateParams(t, updateParams) {
@@ -764,4 +764,108 @@ test('mockDynamoDBDocClient simulate failing `update`', t => {
       t.end();
     }
   );
+});
+
+// =====================================================================================================================
+// Simulate `update` using AWS.Request.send(callback) style
+// =====================================================================================================================
+
+test('mockDynamoDBDocClient simulate successful `update` using AWS.Request.send(callback) style', t => {
+  const params = {TableName: 'TestTable', Key: {id: 123}, Item: {a: 1, b: 2}};
+
+  function validateUpdateParams(t, updateParams) {
+    t.equal(updateParams, params, `updateParams must be params`);
+  }
+
+  const updateResult = {hee: 'Hee'};
+
+  const dynamoDBDocClient = mockDynamoDBDocClient(t, 'test1', 1, {
+    update: {result: updateResult, validateArgs: validateUpdateParams}
+  });
+
+  // Test `update` simulation
+  dynamoDBDocClient.update(params).send((err, res) => {
+    if (err) {
+      t.end(`update should NOT have failed with error (${err})`);
+    } else {
+      t.equal(res, updateResult, `update result must be updateResult`);
+      t.end();
+    }
+  });
+});
+
+test('mockDynamoDBDocClient simulate failing `update` using AWS.Request.send(callback) style', t => {
+  const params = {TableName: 'TestTable', Key: {id: 123}, Item: {a: 1, b: 2}};
+
+  function validateUpdateParams(t, updateParams) {
+    t.equal(updateParams, params, `updateParams must be params`);
+  }
+
+  const updateError = new Error('Boom ba-da boom');
+
+  const dynamoDBDocClient = mockDynamoDBDocClient(t, 'test1', 1, {
+    update: {error: updateError, validateArgs: validateUpdateParams}
+  });
+
+  // Test `update` simulation
+  dynamoDBDocClient.update(params).send((err, res) => {
+    if (err) {
+      t.equal(err, updateError, `update error must be updateError`);
+      t.end();
+    } else {
+      t.end(`update should NOT have passed with result (${JSON.stringify(res)})`);
+    }
+  });
+});
+
+// =====================================================================================================================
+// Simulate `update` using immediate callback style
+// =====================================================================================================================
+
+test('mockDynamoDBDocClient simulate successful `update` using immediate callback style', t => {
+  const params = {TableName: 'TestTable', Key: {id: 123}, Item: {a: 1, b: 2}};
+
+  function validateUpdateParams(t, updateParams) {
+    t.equal(updateParams, params, `updateParams must be params`);
+  }
+
+  const updateResult = {hee: 'Hee'};
+
+  const dynamoDBDocClient = mockDynamoDBDocClient(t, 'test1', 1, {
+    update: {result: updateResult, validateArgs: validateUpdateParams}
+  });
+
+  // Test `update` simulation
+  dynamoDBDocClient.update(params, (err, res) => {
+    if (err) {
+      t.end(`update should NOT have failed with error (${err})`);
+    } else {
+      t.equal(res, updateResult, `update result must be updateResult`);
+      t.end();
+    }
+  });
+});
+
+test('mockDynamoDBDocClient simulate failing `update` using immediate callback style', t => {
+  const params = {TableName: 'TestTable', Key: {id: 123}, Item: {a: 1, b: 2}};
+
+  function validateUpdateParams(t, updateParams) {
+    t.equal(updateParams, params, `updateParams must be params`);
+  }
+
+  const updateError = new Error('Boom ba-da boom');
+
+  const dynamoDBDocClient = mockDynamoDBDocClient(t, 'test1', 1, {
+    update: {error: updateError, validateArgs: validateUpdateParams}
+  });
+
+  // Test `update` simulation
+  dynamoDBDocClient.update(params, (err, res) => {
+    if (err) {
+      t.equal(err, updateError, `update error must be updateError`);
+      t.end();
+    } else {
+      t.end(`update should NOT have passed with result (${JSON.stringify(res)})`);
+    }
+  });
 });

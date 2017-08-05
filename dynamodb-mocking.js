@@ -22,11 +22,33 @@ module.exports.mockDynamoDBDocClient = mockDynamoDBDocClient;
 function mockDynamoDBDocClient(t, prefix, delayMs, mockResponseSourcesByMethodName) {
   const ms = delayMs ? delayMs : 1;
 
-  function generateAwsRequest(methodName, params, refineResult) {
-    return {
-      promise() {
-        const r = resolveResponse(mockResponseSourcesByMethodName[methodName], params);
+  function generateAwsRequest(methodName, params, callback, refineResult) {
+    const r = resolveResponse(mockResponseSourcesByMethodName[methodName], params);
 
+    function executeCallback(callback) {
+      setTimeout(() => {
+        if (t && t.pass) t.pass(`${prefix} simulated ${methodName} to DynamoDB.DocumentClient with (${JSON.stringify(params)})`);
+
+        if (r && r.validateArgs) r.validateArgs(t, params);
+
+        if (r && r.error) {
+          callback(r.error, null);
+        } else {
+          const result = r ? r.result : undefined;
+          callback(null, typeof refineResult === 'function' ? refineResult(result) : result);
+        }
+      }, ms);
+    }
+
+    if (callback) executeCallback(callback);
+
+    return {
+      /** @param {Function|undefined} [callback] */
+      send(callback) {
+        if (callback) executeCallback(callback);
+      },
+
+      promise() {
         return Promises.delay(ms).then(() => {
           if (t && t.pass) t.pass(`${prefix} simulated ${methodName} to DynamoDB.DocumentClient with (${JSON.stringify(params)})`);
 
@@ -46,15 +68,15 @@ function mockDynamoDBDocClient(t, prefix, delayMs, mockResponseSourcesByMethodNa
   }
 
   return {
-    batchGet(params) { return generateAwsRequest('batchGet', params); },
-    batchWrite(params) { return generateAwsRequest('batchWrite', params); },
+    batchGet(params, callback) { return generateAwsRequest('batchGet', params, callback); },
+    batchWrite(params, callback) { return generateAwsRequest('batchWrite', params, callback); },
     createSet(list, options) { return simulateCreateSet(list, options); },
-    delete(params) { return generateAwsRequest('delete', params); },
-    get(params) { return generateAwsRequest('get', params, refineItemResult); },
-    put(params) { return generateAwsRequest('put', params); },
-    query(params) { return generateAwsRequest('query', params, refineItemsResult); },
-    scan(params) { return generateAwsRequest('scan', params, refineItemsResult); },
-    update(params) { return generateAwsRequest('update', params); },
+    delete(params, callback) { return generateAwsRequest('delete', params, callback); },
+    get(params, callback) { return generateAwsRequest('get', params, callback, refineItemResult); },
+    put(params, callback) { return generateAwsRequest('put', params, callback); },
+    query(params, callback) { return generateAwsRequest('query', params, callback, refineItemsResult); },
+    scan(params, callback) { return generateAwsRequest('scan', params, callback, refineItemsResult); },
+    update(params, callback) { return generateAwsRequest('update', params, callback); },
   };
 }
 

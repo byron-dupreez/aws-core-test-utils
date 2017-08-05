@@ -1,4 +1,4 @@
-# aws-core-test-utils v1.0.8
+# aws-core-test-utils v1.0.9
 Utilities to assist with the unit testing of code using AWS
 
 Modules:
@@ -15,6 +15,9 @@ $ npm i aws-core-test-utils --save-dev
 ```
 
 ## Changes
+
+### 1.0.9
+- Backport of changes from 2.0.11
 
 ### 1.0.8
 - Backport from 2.0.10: Added `kms-mocking` & `kms-utils` modules
