@@ -4,6 +4,7 @@ const Promises = require('./promises-extract');
 
 /**
  * Utilities for generating mock DynamoDB.DocumentClient instances for testing.
+ * @module aws-core-test-utils/dynamodb-mocking
  * @author Byron du Preez
  */
 
