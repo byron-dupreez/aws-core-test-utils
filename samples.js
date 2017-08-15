@@ -48,7 +48,7 @@ module.exports = {
   sampleKinesisEventWithRecord: sampleKinesisEventWithRecord,
   sampleKinesisEventWithRecords: sampleKinesisEventWithRecords,
 
-  sampleKinesisMessage: sampleKinesisMessage,
+  sampleKinesisMessageAndRecord: sampleKinesisMessageAndRecord,
 
   awsKinesisStreamsSampleEvent: awsKinesisStreamsSampleEvent,
 
@@ -58,6 +58,8 @@ module.exports = {
   sampleDynamoDBEventSourceArnFromPrefixSuffix: sampleDynamoDBEventSourceArnFromPrefixSuffix,
 
   sampleDynamoDBRecord: sampleDynamoDBRecord,
+  sampleDynamoDBMessageAndRecord: sampleDynamoDBMessageAndRecord,
+
   sampleDynamoDBEventWithRecords: sampleDynamoDBEventWithRecords,
 
   awsDynamoDBUpdateSampleEvent: awsDynamoDBUpdateSampleEvent
@@ -241,7 +243,7 @@ function sampleKinesisEventWithRecords(kinesisRecords) {
   };
 }
 
-function sampleKinesisMessage(shardId, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5) {
+function sampleKinesisMessageAndRecord(shardId, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5) {
   const msg = {};
   if (id1) msg.id1 = id1;
   if (id2) msg.id2 = id2;
@@ -257,10 +259,7 @@ function sampleKinesisMessage(shardId, eventSeqNo, eventSourceARN, id1, id2, k1,
 
   const record = sampleKinesisRecord(shardId, eventSeqNo, undefined, msg, eventSourceARN, undefined);
 
-  msg.consumerState = {};
-  Object.defineProperty(msg.consumerState, 'record', {value: record, writable: true, configurable: true, enumerable: false});
-
-  return msg;
+  return [msg, record];
 }
 
 function awsKinesisStreamsSampleEvent(identityArn, eventSourceArn) {
@@ -285,7 +284,7 @@ function awsKinesisStreamsSampleEvent(identityArn, eventSourceArn) {
   };
 }
 
-function sampleDynamoDBRecord(eventID, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5) { //, skipSimplify) {
+function sampleDynamoDBRecord(eventID, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5) {
   const record = {
     "eventID": eventID,
     "eventVersion": "1.0",
@@ -349,6 +348,19 @@ function sampleDynamoDBRecord(eventID, eventSeqNo, eventSourceARN, id1, id2, k1,
     oldImage.n5 = {"S": `${n5}`};
   }
   return record;
+}
+
+function sampleDynamoDBMessageAndRecord(eventID, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5) { // , skipSimplify
+  const record = sampleDynamoDBRecord(eventID, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5);
+
+  // const msg = copy(record, deep);
+  // Create a "copy" of record without `core-functions/copying#copy`
+  const msg = sampleDynamoDBRecord(eventID, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5);
+
+  // if (!skipSimplify) {
+  //   dynamoDBUtils.simplifyKeysNewImageAndOldImage(msg.dynamodb);
+  // }
+  return [msg, record];
 }
 
 function sampleDynamoDBEventWithRecords(dynamoDBRecords) {

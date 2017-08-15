@@ -1,5 +1,10 @@
 ## Changes
 
+### 3.0.0
+- Added `sampleKinesisMessageAndRecord` & `sampleDynamoDBMessageAndRecord` functions
+- Removed `sampleKinesisMessage` function, which is no longer usable after removal of setting of `consumerState` 
+  properties on messages
+
 ### 2.0.11
 - Changes to `kms-mocking` module:
   - Changed mocked AWS.KMS `encrypt` & `decrypt` methods to also simulate the AWS.Request `send(callback)` & `promise()` 

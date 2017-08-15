@@ -1,7 +1,7 @@
 {
   "name": "aws-core-test-utils",
   "description": "Utilities to assist with the unit testing of code using AWS",
-  "version": "2.0.11",
+  "version": "3.0.0",
   "author": "Byron du Preez",
   "license": "Apache-2.0",
   "engines": {
