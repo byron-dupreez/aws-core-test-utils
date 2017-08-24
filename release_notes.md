@@ -1,5 +1,8 @@
 ## Changes
 
+### 3.0.1
+- Synchronized `samples.js` with versions from other modules
+
 ### 3.0.0
 - Added `sampleKinesisMessageAndRecord` & `sampleDynamoDBMessageAndRecord` functions
 - Removed `sampleKinesisMessage` function, which is no longer usable after removal of setting of `consumerState` 

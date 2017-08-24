@@ -1,4 +1,4 @@
-# aws-core-test-utils v3.0.0
+# aws-core-test-utils v3.0.1
 Utilities to assist with the unit testing of code using AWS
 
 Modules:

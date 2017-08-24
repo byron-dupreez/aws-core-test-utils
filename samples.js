@@ -14,7 +14,6 @@ const sampleIdentityArn = 'identityarn';
 const sampleFunctionName = "testFunc";
 const latestFunctionVersion = "$LATEST";
 
-
 let nextSequenceNumber = 1;
 
 const sampleMessage = {
@@ -48,6 +47,8 @@ module.exports = {
   sampleKinesisEventWithRecord: sampleKinesisEventWithRecord,
   sampleKinesisEventWithRecords: sampleKinesisEventWithRecords,
 
+  sampleMsg: sampleMsg,
+  sampleKinesisRecord2: sampleKinesisRecord2,
   sampleKinesisMessageAndRecord: sampleKinesisMessageAndRecord,
 
   awsKinesisStreamsSampleEvent: awsKinesisStreamsSampleEvent,
@@ -243,7 +244,7 @@ function sampleKinesisEventWithRecords(kinesisRecords) {
   };
 }
 
-function sampleKinesisMessageAndRecord(shardId, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5) {
+function sampleMsg(id1, id2, k1, k2, n1, n2, n3, n4, n5) {
   const msg = {};
   if (id1) msg.id1 = id1;
   if (id2) msg.id2 = id2;
@@ -256,10 +257,24 @@ function sampleKinesisMessageAndRecord(shardId, eventSeqNo, eventSourceARN, id1,
   if (n3) msg.n3 = n3;
   if (n4) msg.n4 = n4;
   if (n5) msg.n5 = n5;
+  return msg;
+}
+
+/**
+ * @returns {[Message, Record]}
+ */
+function sampleKinesisMessageAndRecord(shardId, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5) {
+  const msg = sampleMsg(id1, id2, k1, k2, n1, n2, n3, n4, n5);
 
   const record = sampleKinesisRecord(shardId, eventSeqNo, undefined, msg, eventSourceARN, undefined);
 
   return [msg, record];
+}
+
+function sampleKinesisRecord2(shardId, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5) {
+  const msg = sampleMsg(id1, id2, k1, k2, n1, n2, n3, n4, n5);
+
+  return sampleKinesisRecord(shardId, eventSeqNo, undefined, msg, eventSourceARN, undefined);
 }
 
 function awsKinesisStreamsSampleEvent(identityArn, eventSourceArn) {
@@ -350,6 +365,9 @@ function sampleDynamoDBRecord(eventID, eventSeqNo, eventSourceARN, id1, id2, k1,
   return record;
 }
 
+/**
+ * @returns {[Message, Record]}
+ */
 function sampleDynamoDBMessageAndRecord(eventID, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5) { // , skipSimplify
   const record = sampleDynamoDBRecord(eventID, eventSeqNo, eventSourceARN, id1, id2, k1, k2, n1, n2, n3, n4, n5);
 
