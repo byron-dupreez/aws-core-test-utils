@@ -1,5 +1,8 @@
 ## Changes
 
+### 3.0.4
+- Synchronized `samples.js` with version from `aws-core-utils` module
+
 ### 3.0.3
 - Added dummy first exports (`exports._ = '_'; //IDE workaround`) to most modules as a temporary workaround for IDE issue
 

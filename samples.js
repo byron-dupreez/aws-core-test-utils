@@ -1,20 +1,17 @@
 'use strict';
 
-/**
- * Utilities for generating samples of various AWS artifacts for testing.
- * @author Byron du Preez
- */
+const Strings = require('core-functions/strings');
+const isNotBlank = Strings.isNotBlank;
 
 const uuid = require('uuid');
 const base64 = require('core-functions/base64');
 
+// Constants
 const sampleAwsAccountId = "XXXXXXXXXXXX";
 const sampleIdentityArn = 'identityarn';
 
 const sampleFunctionName = "test-func";
 const latestFunctionVersion = "$LATEST";
-
-let nextSequenceNumber = 1;
 
 const sampleMessage = {
   key1: 'value1',
@@ -22,7 +19,14 @@ const sampleMessage = {
   key3: 'value3'
 };
 
+let nextSequenceNumber = 1;
+
+/**
+ * Utilities for generating samples of various AWS artifacts for testing.
+ * @author Byron du Preez
+ */
 exports._ = '_'; //IDE workaround
+
 exports.sampleAwsAccountId = sampleAwsAccountId;
 exports.sampleIdentityArn = sampleIdentityArn;
 exports.sampleFunctionName = sampleFunctionName;
@@ -65,11 +69,6 @@ exports.sampleDynamoDBEventWithRecords = sampleDynamoDBEventWithRecords;
 
 exports.awsDynamoDBUpdateSampleEvent = awsDynamoDBUpdateSampleEvent;
 
-
-const Strings = require('core-functions/strings');
-//const isBlank = Strings.isBlank;
-const isNotBlank = Strings.isNotBlank;
-//const trim = Strings.trim;
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Start of code borrowed from `aws-core-utils/arns`
