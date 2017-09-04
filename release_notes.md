@@ -1,5 +1,8 @@
 ## Changes
 
+### 3.0.3
+- Added dummy first exports (`exports._ = '_'; //IDE workaround`) to most modules as a temporary workaround for IDE issue
+
 ### 3.0.2
 - Changed all modules' exports to modifications of the default `exports` object instead of replacing the default `module.exports` object
 

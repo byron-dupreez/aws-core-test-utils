@@ -22,6 +22,7 @@ const sampleMessage = {
   key3: 'value3'
 };
 
+exports._ = '_'; //IDE workaround
 exports.sampleAwsAccountId = sampleAwsAccountId;
 exports.sampleIdentityArn = sampleIdentityArn;
 exports.sampleFunctionName = sampleFunctionName;

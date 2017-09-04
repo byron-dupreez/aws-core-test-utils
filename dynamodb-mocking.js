@@ -7,7 +7,7 @@ const Promises = require('./promises-extract');
  * @module aws-core-test-utils/dynamodb-mocking
  * @author Byron du Preez
  */
-
+exports._ = '_'; //IDE workaround
 exports.mockDynamoDBDocClient = mockDynamoDBDocClient;
 
 /**
