@@ -1,21 +1,18 @@
 'use strict';
 
 /**
- * Module containing native Promise utility functions, which are installed directly onto the native {@linkcode Promise}
- * class.
- * @module core-functions/promises
+ * Module containing native Promise utility functions.
+ * @module aws-core-test-utils/promises-extract
  * @author Byron du Preez
  */
-module.exports = {
-  delay: delay
-};
+exports.delay = delay;
 
 /**
  * Starts a simple timeout Promise, which will resolve after the specified delay in milliseconds. If any object is
  * passed into this function as the cancellable argument, then this function will install a cancelTimeout method on it,
  * which accepts a single optional mustResolve argument and which if subsequently invoked will cancel the timeout and
- * either resolve the promise (if mustResolve) or reject the promise (default), but ONLY if the timeout
- * has not triggered yet.
+ * either resolve the promise (if mustResolve) or reject the promise (default), but ONLY if the timeout has not
+ * triggered yet.
  *
  * @param {number} ms - the number of milliseconds to delay
  * @param {Object|undefined|null} [cancellable] - an arbitrary object onto which a cancelTimeout method will be installed

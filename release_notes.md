@@ -1,5 +1,8 @@
 ## Changes
 
+### 3.0.2
+- Changed all modules' exports to modifications of the default `exports` object instead of replacing the default `module.exports` object
+
 ### 3.0.1
 - Synchronized `samples.js` with versions from other modules
 

@@ -8,7 +8,7 @@ const Promises = require('./promises-extract');
  * @author Byron du Preez
  */
 
-module.exports.mockDynamoDBDocClient = mockDynamoDBDocClient;
+exports.mockDynamoDBDocClient = mockDynamoDBDocClient;
 
 /**
  * Generates a mock of a DynamoDB.DocumentClient for testing purposes.

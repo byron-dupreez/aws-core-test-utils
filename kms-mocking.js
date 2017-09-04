@@ -5,7 +5,7 @@
  * @module aws-core-test-utils/kms-mocking
  * @author Byron du Preez
  */
-module.exports.mockKMS = mockKMS;
+exports.mockKMS = mockKMS;
 
 /**
  * Generates a mock AWS.KMS instance, which currently only mocks the `encrypt` & `decrypt` methods.

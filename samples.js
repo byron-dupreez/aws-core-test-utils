@@ -11,7 +11,7 @@ const base64 = require('core-functions/base64');
 const sampleAwsAccountId = "XXXXXXXXXXXX";
 const sampleIdentityArn = 'identityarn';
 
-const sampleFunctionName = "testFunc";
+const sampleFunctionName = "test-func";
 const latestFunctionVersion = "$LATEST";
 
 let nextSequenceNumber = 1;
@@ -22,49 +22,48 @@ const sampleMessage = {
   key3: 'value3'
 };
 
-module.exports = {
-  sampleAwsAccountId: sampleAwsAccountId,
-  sampleIdentityArn: sampleIdentityArn,
-  sampleFunctionName: sampleFunctionName,
-  sampleMessage: sampleMessage,
-  latestFunctionVersion: latestFunctionVersion,
+exports.sampleAwsAccountId = sampleAwsAccountId;
+exports.sampleIdentityArn = sampleIdentityArn;
+exports.sampleFunctionName = sampleFunctionName;
+exports.sampleMessage = sampleMessage;
+exports.latestFunctionVersion = latestFunctionVersion;
 
   // General
-  sampleNumberString: sampleNumberString,
+exports.sampleNumberString = sampleNumberString;
 
   // For AWS contexts
-  sampleInvokedFunctionArn: sampleInvokedFunctionArn,
-  sampleAwsContext: sampleAwsContext,
+exports.sampleInvokedFunctionArn = sampleInvokedFunctionArn;
+exports.sampleAwsContext = sampleAwsContext;
 
   // For Kinesis events
-  sampleStreamName: sampleStreamName,
-  sampleKinesisEventSourceArn: sampleKinesisEventSourceArn,
-  sampleKinesisEventSourceArnFromPrefixSuffix: sampleKinesisEventSourceArnFromPrefixSuffix,
-  sampleBase64Data: sampleBase64Data,
-  sampleKinesisPutRecordRequest: sampleKinesisPutRecordRequest,
-  sampleKinesisRecord: sampleKinesisRecord,
-  sampleKinesisEventWithSampleRecord: sampleKinesisEventWithSampleRecord,
-  sampleKinesisEventWithRecord: sampleKinesisEventWithRecord,
-  sampleKinesisEventWithRecords: sampleKinesisEventWithRecords,
+exports.sampleStreamName = sampleStreamName;
+exports.sampleKinesisEventSourceArn = sampleKinesisEventSourceArn;
+exports.sampleKinesisEventSourceArnFromPrefixSuffix = sampleKinesisEventSourceArnFromPrefixSuffix;
+exports.sampleBase64Data = sampleBase64Data;
+exports.sampleKinesisPutRecordRequest = sampleKinesisPutRecordRequest;
+exports.sampleKinesisRecord = sampleKinesisRecord;
+exports.sampleKinesisEventWithSampleRecord = sampleKinesisEventWithSampleRecord;
+exports.sampleKinesisEventWithRecord = sampleKinesisEventWithRecord;
+exports.sampleKinesisEventWithRecords = sampleKinesisEventWithRecords;
 
-  sampleMsg: sampleMsg,
-  sampleKinesisRecord2: sampleKinesisRecord2,
-  sampleKinesisMessageAndRecord: sampleKinesisMessageAndRecord,
+exports.sampleMsg = sampleMsg;
+exports.sampleKinesisRecord2 = sampleKinesisRecord2;
+exports.sampleKinesisMessageAndRecord = sampleKinesisMessageAndRecord;
 
-  awsKinesisStreamsSampleEvent: awsKinesisStreamsSampleEvent,
+exports.awsKinesisStreamsSampleEvent = awsKinesisStreamsSampleEvent;
 
   // For DynamoDB stream events
-  sampleTableName: sampleTableName,
-  sampleDynamoDBEventSourceArn: sampleDynamoDBEventSourceArn,
-  sampleDynamoDBEventSourceArnFromPrefixSuffix: sampleDynamoDBEventSourceArnFromPrefixSuffix,
+exports.sampleTableName = sampleTableName;
+exports.sampleDynamoDBEventSourceArn = sampleDynamoDBEventSourceArn;
+exports.sampleDynamoDBEventSourceArnFromPrefixSuffix = sampleDynamoDBEventSourceArnFromPrefixSuffix;
 
-  sampleDynamoDBRecord: sampleDynamoDBRecord,
-  sampleDynamoDBMessageAndRecord: sampleDynamoDBMessageAndRecord,
+exports.sampleDynamoDBRecord = sampleDynamoDBRecord;
+exports.sampleDynamoDBMessageAndRecord = sampleDynamoDBMessageAndRecord;
 
-  sampleDynamoDBEventWithRecords: sampleDynamoDBEventWithRecords,
+exports.sampleDynamoDBEventWithRecords = sampleDynamoDBEventWithRecords;
 
-  awsDynamoDBUpdateSampleEvent: awsDynamoDBUpdateSampleEvent
-};
+exports.awsDynamoDBUpdateSampleEvent = awsDynamoDBUpdateSampleEvent;
+
 
 const Strings = require('core-functions/strings');
 //const isBlank = Strings.isBlank;
