@@ -1,5 +1,8 @@
 ## Changes
 
+### 3.0.5
+- Minor update to `node` engine version number in `package.json`
+
 ### 3.0.4
 - Synchronized `samples.js` with version from `aws-core-utils` module
 
