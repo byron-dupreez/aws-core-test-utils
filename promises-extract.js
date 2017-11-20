@@ -5,7 +5,7 @@
  * @module aws-core-test-utils/promises-extract
  * @author Byron du Preez
  */
-exports._ = '_'; //IDE workaround
+exports._$_ = '_$_'; //IDE workaround
 exports.delay = delay;
 
 /**

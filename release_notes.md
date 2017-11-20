@@ -1,5 +1,9 @@
 ## Changes
 
+### 3.0.6
+- Renamed dummy first exports (`exports._ = '_'; //IDE workaround`) of most modules to (`exports._$_ = '_$_';`) to avoid 
+  potential future collisions with `lodash` & `underscore`
+
 ### 3.0.5
 - Minor update to `node` engine version number in `package.json`
 
