@@ -1,4 +1,4 @@
-# aws-core-test-utils v3.0.6
+# aws-core-test-utils v3.0.7
 Utilities to assist with the unit testing of code using AWS
 
 Modules:
@@ -6,7 +6,7 @@ Modules:
 - kms-mocking.js - Utilities for generating mock AWS.KMS instances for unit testing
 - samples.js - Utilities for generating samples of various AWS artifacts for testing
 
-This module is exported as a [Node.js](https://nodejs.org/) module.
+This module is exported as a [Node.js](https://nodejs.org) module.
 
 ## Installation
 

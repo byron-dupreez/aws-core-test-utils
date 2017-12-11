@@ -1,5 +1,8 @@
 ## Changes
 
+### 3.0.7
+- Minor fix to `README.md`
+
 ### 3.0.6
 - Renamed dummy first exports (`exports._ = '_'; //IDE workaround`) of most modules to (`exports._$_ = '_$_';`) to avoid 
   potential future collisions with `lodash` & `underscore`
