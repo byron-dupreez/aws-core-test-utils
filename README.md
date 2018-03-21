@@ -1,4 +1,4 @@
-# aws-core-test-utils v3.0.7
+# aws-core-test-utils v3.0.8
 Utilities to assist with the unit testing of code using AWS
 
 Modules:
@@ -16,4 +16,4 @@ $ npm i aws-core-test-utils --save-dev
 ```
 
 ## Changes
-See [release_notes.md](./release_notes.md)
+See [CHANGES.md](CHANGES.md)

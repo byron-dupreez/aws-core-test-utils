@@ -1,5 +1,10 @@
 ## Changes
 
+### 3.0.8
+- Added `.npmignore`
+- Renamed `release_notes.md` to `CHANGES.md`
+- Updated dependencies
+
 ### 3.0.7
 - Minor fix to `README.md`
 
