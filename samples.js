@@ -1,10 +1,13 @@
 'use strict';
 
-const Strings = require('core-functions/strings');
+const Strings = require('./strings-extract');
 const isNotBlank = Strings.isNotBlank;
+const trim = Strings.trim;
+const trimOrEmpty = Strings.trimOrEmpty;
 
 const uuid = require('uuid');
-const base64 = require('core-functions/base64');
+
+const base64 = require('./base64-extract');
 
 // Constants
 const sampleAwsAccountId = "XXXXXXXXXXXX";
@@ -478,4 +481,3 @@ function awsDynamoDBUpdateSampleEvent(eventSourceArn) {
     ]
   };
 }
-
