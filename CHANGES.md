@@ -1,5 +1,9 @@
 ## Changes
 
+### 3.0.10
+- Updated `tape` dev dependency to 4.9.1
+- Updated `uuid` dev dependency to 3.2.1
+
 ### 3.0.9
 - Removed broken & unwanted `core-functions` dependencies from `samples` module by including copies of needed 
   `core-functions` functions
