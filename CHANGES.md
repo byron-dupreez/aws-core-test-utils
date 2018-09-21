@@ -1,5 +1,8 @@
 ## Changes
 
+### 3.0.11
+- Changed `kms-mocking` module to enable dummy encryption & decryption of any arbitrary values
+
 ### 3.0.10
 - Updated `tape` dev dependency to 4.9.1
 - Updated `uuid` dev dependency to 3.2.1
